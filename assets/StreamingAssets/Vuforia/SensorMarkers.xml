@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="Sensor5" size="5.000000 5.000000" />
+    <ImageTarget name="Sensor4" size="5.000000 5.012438" />
+    <ImageTarget name="Sensor3" size="5.000000 5.000000" />
+    <ImageTarget name="Sensor2" size="5.000000 5.008850" />
+    <ImageTarget name="Sensor1" size="5.000000 5.000000" />
+    <ImageTarget name="thermometer" size="5.000000 5.000000" />
+    <ImageTarget name="infrared" size="5.000000 5.000000" />
+    <ImageTarget name="humidity" size="5.000000 5.000000" />
+    <ImageTarget name="UV" size="5.000000 5.000000" />
+  </Tracking>
+</QCARConfig>
