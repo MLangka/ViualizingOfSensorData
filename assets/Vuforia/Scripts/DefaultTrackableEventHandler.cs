@@ -75,13 +75,13 @@ namespace Vuforia
 			//show the button shortly
 			yield return new WaitForSeconds (1.5f);
 			GameObject.Find("MachineFound").GetComponent<Animator>().SetBool("targetFound", false);
-			yield return new WaitForSeconds (1);
 			//open canvas with information
 			canvas.GetComponent<Animator>().SetBool("found", true);
 		}
 
         private void OnTrackingFound(){
 			//create the machine object for this image
+			//text should be replaced by saved ID of machine to use for the agent
 			Control.obj.currMachine = new Gerät("KR QUANTEC Extra");
 			//activate buttons for different sensors and current canvas 
 			btnGroup.SetActive(true);

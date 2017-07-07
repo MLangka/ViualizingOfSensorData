@@ -11,13 +11,12 @@ public class Gerät{
 	private GameObject obj2;
 	private GameObject obj3;
 
-	//get data from agent
+	//get id from picture used and then get data from agent
 	public Gerät(String machineName){
 		this.name = machineName;
 		machineSensors = new Sensor[3];
 		machineSensors[0] = new Sensor("temperatur", 300, 200, this);
 		machineSensors[1] = new Sensor("ultraschall", 400, 100, this);
-		machineSensors[2] = new Sensor("humid", 100, 0, this);
 	}
 
 	public void showButtons(){
@@ -29,15 +28,19 @@ public class Gerät{
 			img.sprite = Resources.Load<Sprite>("Sprites/" + machineSensors[0].sensorType);
 			obj1.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors[0]);});
 		}
-		if(machineSensors[1] != null && obj2 != null){
+		if (machineSensors[1] != null && obj2 != null) {
 			Image img = obj2.GetComponent<Image>();
 			img.sprite = Resources.Load<Sprite>("Sprites/" + machineSensors[1].sensorType);
-			obj2.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors[1]);});
+			obj2.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors [1]);});
+		}else{
+			obj2.SetActive(false);
 		}
 		if(machineSensors[2] != null && obj3 != null){
 			Image img = obj3.GetComponent<Image>();
 			img.sprite = Resources.Load<Sprite>("Sprites/" + machineSensors[2].sensorType);
 			obj3.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors[2]);});
+		}else{
+			obj3.SetActive(false);
 		}
 		Text txt = GameObject.Find("SensorText").GetComponent<Text>();
 		if(txt != null){
