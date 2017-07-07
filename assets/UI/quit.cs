@@ -17,7 +17,10 @@ public class quit : MonoBehaviour{
 	}
 
 	private void returnToDashboard(){
-
+		/*
+		 * string t = "mailto:bla@bla.com?subject=Question%20on%20this%20app";
+		 * Application.OpenURL(t);
+		*/
 	}
 
 	private void quitApp(){
