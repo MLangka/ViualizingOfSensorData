@@ -15,7 +15,7 @@ public class Gerät{
 	public Gerät(String machineName){
 		this.name = machineName;
 		machineSensors = new Sensor[3];
-		machineSensors[0] = new Sensor("temperature", 300, 200, this);
+		machineSensors[0] = new Sensor("temperatur", 300, 200, this);
 		machineSensors[1] = new Sensor("ultraschall", 400, 100, this);
 		machineSensors[2] = new Sensor("humid", 100, 0, this);
 	}
@@ -49,10 +49,6 @@ public class Gerät{
 		Canvas sensorCanvas = GameObject.Find ("SensorCanvas").GetComponent<Canvas> ();
 		sensorCanvas.enabled = true;
 		sensorCanvas.GetComponent<Animator> ().SetBool("found", true);
-		//Canvas geräteCanvas = GameObject.Find ("GeräteCanvas").GetComponent<Canvas> ();
-		//geräteCanvas.GetComponent<Animator>().SetBool("found", false);
-		//geräteCanvas.enabled = false;
-
 
 		GameObject.Find("Fire KR").GetComponent<ParticleSystem>().Play();
 		Text sensorName = GameObject.Find("SensorName").GetComponent<Text>();
