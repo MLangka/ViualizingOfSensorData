@@ -17,6 +17,7 @@ public class Gerät{
 		machineSensors = new Sensor[3];
 		machineSensors[0] = new Sensor("temperatur", 300, 200, this);
 		machineSensors[1] = new Sensor("ultraschall", 400, 100, this);
+		//machineSensors[2] = new Sensor("infrarot", 0, 200, this);
 	}
 
 	public void showButtons(){
@@ -32,15 +33,17 @@ public class Gerät{
 			Image img = obj2.GetComponent<Image>();
 			img.sprite = Resources.Load<Sprite>("Sprites/" + machineSensors[1].sensorType);
 			obj2.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors [1]);});
-		}else{
-			obj2.SetActive(false);
 		}
 		if(machineSensors[2] != null && obj3 != null){
 			Image img = obj3.GetComponent<Image>();
 			img.sprite = Resources.Load<Sprite>("Sprites/" + machineSensors[2].sensorType);
 			obj3.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors[2]);});
-		}else{
-			obj3.SetActive(false);
+		}
+		GameObject[] sensorbuttons = GameObject.FindGameObjectsWithTag("gerätesensor");
+		if(sensorbuttons.Length > machineSensors.Length){
+			for(int i = sensorbuttons.Length; i > machineSensors.Length; i--){
+				sensorbuttons[i].SetActive(false);
+			}
 		}
 		Text txt = GameObject.Find("SensorText").GetComponent<Text>();
 		if(txt != null){

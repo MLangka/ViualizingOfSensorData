@@ -76,7 +76,14 @@ namespace Vuforia
 			yield return new WaitForSeconds (1.5f);
 			GameObject.Find("MachineFound").GetComponent<Animator>().SetBool("targetFound", false);
 			//open canvas with information
-			canvas.GetComponent<Animator>().SetBool("found", true);
+			Animator ani = canvas.GetComponent<Animator>();
+			ani.SetBool("found", true);
+			//enable button for closing the canvas
+			GameObject.Find("CloseMachine").GetComponent<Button>().onClick.AddListener(closeCanvas);
+		}
+
+		private void closeCanvas(){
+			canvas.GetComponent<Animator>().SetBool("found", false);
 		}
 
         private void OnTrackingFound(){
