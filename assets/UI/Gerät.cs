@@ -71,6 +71,7 @@ public class Gerät : ScriptableObject {
 	}
 
 	public void openSensorView(Sensor currSensor){
+		//Control.obj.currMachine = null;
 		Canvas sensorCanvas = GameObject.Find ("SensorCanvas").GetComponent<Canvas> ();
 		sensorCanvas.enabled = true;
 		sensorCanvas.GetComponent<Animator> ().SetBool("found", true);
@@ -82,8 +83,21 @@ public class Gerät : ScriptableObject {
 		maxValue.text = currSensor.maxValue.ToString();
 		Text minValue = GameObject.Find("MinValue").GetComponent<Text>();
 		minValue.text = currSensor.minValue.ToString();
+		GameObject.Find("CloseSensor").GetComponent<Button>().onClick.AddListener(delegate{closeSensorCanvas(sensorCanvas);});
 		//Button backToMachine = GameObject.Find("backToMachine").GetComponent<Button>();
 		//backToMachine.onClick.AddListener(delegate{back(currSensor);});
+	}
+
+	private void closeSensorCanvas(Canvas sensorCanvas){
+		sensorCanvas.GetComponent<Animator>().SetBool("found", false);
+		Text txt = GameObject.Find("SensorText").GetComponent<Text>();
+		if(txt != null){
+			txt.text = "0";
+		}
+		GameObject.Find("SensorsButtonGroup").SetActive(false);
+		Animator sensorButton = GameObject.Find("Sensor Button").GetComponent<Animator>();
+		sensorButton.SetBool("sensorAvailable", false);
+		Control.obj.currMachine = null;
 	}
 
 	private void back(Sensor currSensor){
