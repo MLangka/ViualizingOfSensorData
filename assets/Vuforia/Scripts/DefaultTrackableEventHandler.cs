@@ -26,6 +26,7 @@ namespace Vuforia
 		public GameObject btnGroup;
 		private Canvas machineCanvas;
 		private Canvas sensorCanvas;
+		private bool machineFound;
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
     
@@ -38,6 +39,7 @@ namespace Vuforia
             }
 			machineCanvas = GameObject.Find("GerätCanvas").GetComponent<Canvas>();
 			sensorCanvas = GameObject.Find("SensorCanvas").GetComponent<Canvas>();
+			machineFound = false;
         }
 
         #endregion // UNTIY_MONOBEHAVIOUR_METHODS
@@ -70,6 +72,7 @@ namespace Vuforia
         #region PRIVATE_METHODS
 
 		private IEnumerator showInfo(){
+			machineFound = true;
 			//enable button for machinefound
 			Button btn = GameObject.Find("MachineFound").GetComponent<Button>();
 			GameObject.Find("MachineFound").GetComponent<Animator>().SetBool("targetFound", true);
@@ -94,9 +97,11 @@ namespace Vuforia
 			btnGroup.SetActive(false);
 			Animator sensorButton = GameObject.Find("Sensor Button").GetComponent<Animator>();
 			sensorButton.SetBool("sensorAvailable", false);
+			machineFound = false;
 		}
 
         private void OnTrackingFound(){
+			if(!machineFound){
 			sensorCanvas.enabled = false;
 			machineCanvas.enabled = false;
 			//what to do only if we are in the general machine view
@@ -111,7 +116,7 @@ namespace Vuforia
 				//show the buttons with all sensors
 				Control.obj.currMachine.showButtons();
 			}
-
+			}
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
