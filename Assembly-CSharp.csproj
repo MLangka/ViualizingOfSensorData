@@ -46,7 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\UI\Blink.cs" />
+     <Compile Include="Assets\UI\Client.cs" />
      <Compile Include="Assets\UI\Control.cs" />
      <Compile Include="Assets\UI\Gerät.cs" />
      <Compile Include="Assets\UI\Sensor.cs" />

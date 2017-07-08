@@ -10,6 +10,7 @@ public class Control : MonoBehaviour {
 	//data from sensors
 	public GameObject[] buttons;
 	public Gerät currMachine;
+	public Client client;
 	private int amountOfSensors;
 	private static Sensor sensor;
 
@@ -32,7 +33,13 @@ public class Control : MonoBehaviour {
 		}
 		//disable button menu
 		GameObject.Find("SensorsButtonGroup").SetActive(false);
-		GameObject.Find ("Text KR").SetActive (false);
+		//GameObject.Find ("Text KR").SetActive (false);
+	}
+
+	void Start(){
+		client = (Client) ScriptableObject.CreateInstance("Client");
+		client.initalize();
+		client.communicate();
 	}
 
 	//read and write from File

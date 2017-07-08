@@ -3799,7 +3799,7 @@ TextMesh:
   m_GameObject: {fileID: 212807116}
   m_Text: 'current Value:
 
-    220'
+'
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -14472,6 +14472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttons: []
   currMachine: {fileID: 0}
+  client: {fileID: 0}
 --- !u!4 &763967801
 Transform:
   m_ObjectHideFlags: 0

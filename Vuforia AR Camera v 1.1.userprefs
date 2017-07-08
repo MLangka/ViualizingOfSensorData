@@ -1,13 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UI\Gerät.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\UI\Client.cs">
     <Files>
-      <File FileName="Assets\UI\Gerät.cs" Line="21" Column="3" />
-      <File FileName="Assets\Vuforia\Scripts\DefaultTrackableEventHandler.cs" Line="106" Column="31" />
-      <File FileName="Assets\UI\quit.cs" Line="1" Column="1" />
-      <File FileName="Assets\UI\onClick.cs" Line="1" Column="1" />
-      <File FileName="Assets\UI\Sensor.cs" Line="6" Column="40" />
-      <File FileName="Assets\UI\Control.cs" Line="1" Column="1" />
+      <File FileName="Assets\UI\Gerät.cs" Line="1" Column="1" />
+      <File FileName="Assets\Vuforia\Scripts\DefaultTrackableEventHandler.cs" Line="88" Column="30" />
+      <File FileName="Assets\UI\Control.cs" Line="36" Column="5" />
+      <File FileName="Assets\UI\Client.cs" Line="19" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
