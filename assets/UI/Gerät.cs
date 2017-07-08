@@ -18,7 +18,7 @@ public class Gerät : ScriptableObject {
 		machineSensors = new Sensor[3];
 		machineSensors[0] = new Sensor("temperatur", 300, 200, this);
 		machineSensors[1] = new Sensor("ultraschall", 400, 100, this);
-		machineSensors[2] = new Sensor("infrarot", 0, 200, this);
+		machineSensors[2] = new Sensor("uv", 0, 200, this);
 		//textOnCanvas();
 	}
 
