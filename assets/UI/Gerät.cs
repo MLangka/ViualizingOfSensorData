@@ -71,10 +71,12 @@ public class Gerät : ScriptableObject {
 	}
 
 	public void openSensorView(Sensor currSensor){
-		//Control.obj.currMachine = null;
-		Canvas sensorCanvas = GameObject.Find ("SensorCanvas").GetComponent<Canvas> ();
+		Canvas sensorCanvas = GameObject.Find("SensorCanvas").GetComponent<Canvas>();
 		sensorCanvas.enabled = true;
-		sensorCanvas.GetComponent<Animator> ().SetBool("found", true);
+		sensorCanvas.GetComponent<Animator>().SetBool("found", true);
+		Canvas machineCanvas = GameObject.Find("GerätCanvas").GetComponent<Canvas>();
+		machineCanvas.enabled = true;
+		machineCanvas.GetComponent<Animator>().SetBool("found", false);
 
 		GameObject.Find("Fire KR").GetComponent<ParticleSystem>().Play();
 		Text sensorName = GameObject.Find("SensorName").GetComponent<Text>();
@@ -94,7 +96,10 @@ public class Gerät : ScriptableObject {
 		if(txt != null){
 			txt.text = "0";
 		}
-		GameObject.Find("SensorsButtonGroup").SetActive(false);
+		GameObject btnGroup = GameObject.Find("SensorsButtonGroup");
+		if(btnGroup != null){
+			btnGroup.SetActive(false);
+		}
 		Animator sensorButton = GameObject.Find("Sensor Button").GetComponent<Animator>();
 		sensorButton.SetBool("sensorAvailable", false);
 		Control.obj.currMachine = null;
