@@ -7759,6 +7759,7 @@ GameObject:
   - component: {fileID: 606457507}
   - component: {fileID: 606457506}
   - component: {fileID: 606457505}
+  - component: {fileID: 606457508}
   m_Layer: 5
   m_Name: Sensor Button
   m_TagString: Untagged
@@ -7870,6 +7871,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 606457503}
+--- !u!95 &606457508
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 606457503}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fe10a376dd429ad4d9b70ad21c019c44, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &614131396
 GameObject:
   m_ObjectHideFlags: 0
@@ -14342,6 +14360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttons: []
+  currMachine: {fileID: 0}
 --- !u!4 &763967801
 Transform:
   m_ObjectHideFlags: 0
@@ -14366,6 +14385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def1e3b30820292459cafe2e84c3686e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curValue: 0
+  timestamp: 
+  parent: {fileID: 0}
 --- !u!1 &858014671
 GameObject:
   m_ObjectHideFlags: 0

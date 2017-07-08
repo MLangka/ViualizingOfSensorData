@@ -24,8 +24,8 @@ namespace Vuforia
         #endregion // PRIVATE_MEMBER_VARIABLES
 
 		public GameObject btnGroup;
-		private GameObject[] canvases;
-		private Canvas canvas;
+		private Canvas machineCanvas;
+		private Canvas sensorCanvas;
 
         #region UNTIY_MONOBEHAVIOUR_METHODS
     
@@ -36,7 +36,8 @@ namespace Vuforia
             {
                 mTrackableBehaviour.RegisterTrackableEventHandler(this);
             }
-			canvas = GameObject.Find("GerätCanvas").GetComponent<Canvas>();
+			machineCanvas = GameObject.Find("GerätCanvas").GetComponent<Canvas>();
+			sensorCanvas = GameObject.Find("SensorCanvas").GetComponent<Canvas>();
         }
 
         #endregion // UNTIY_MONOBEHAVIOUR_METHODS
@@ -76,25 +77,36 @@ namespace Vuforia
 			yield return new WaitForSeconds (1.5f);
 			GameObject.Find("MachineFound").GetComponent<Animator>().SetBool("targetFound", false);
 			//open canvas with information
-			Animator ani = canvas.GetComponent<Animator>();
+			Animator sensorButton = GameObject.Find("Sensor Button").GetComponent<Animator>();
+			sensorButton.SetBool("sensorAvailable", true);
+			Animator ani = machineCanvas.GetComponent<Animator>();
 			ani.SetBool("found", true);
 			//enable button for closing the canvas
 			GameObject.Find("CloseMachine").GetComponent<Button>().onClick.AddListener(closeCanvas);
 		}
 
 		private void closeCanvas(){
-			canvas.GetComponent<Animator>().SetBool("found", false);
+			machineCanvas.GetComponent<Animator>().SetBool("found", false);
+			Text txt = GameObject.Find("SensorText").GetComponent<Text>();
+			if(txt != null){
+				txt.text = "0";
+			}
+			btnGroup.SetActive(false);
+			Animator sensorButton = GameObject.Find("Sensor Button").GetComponent<Animator>();
+			sensorButton.SetBool("sensorAvailable", false);
 		}
 
         private void OnTrackingFound(){
-			//create the machine object for this image
-			//text should be replaced by saved ID of machine to use for the agent
-			Control.obj.currMachine = new Gerät("KR QUANTEC Extra");
-			//activate buttons for different sensors and current canvas 
-			btnGroup.SetActive(true);
-			canvas.enabled = true;
+			sensorCanvas.enabled = false;
+			machineCanvas.enabled = false;
 			//what to do only if we are in the general machine view
 			if(!GameObject.Find("SensorCanvas").GetComponent<Canvas>().enabled){
+				//create the machine object for this image
+				//text should be replaced by saved ID of machine to use for the agent
+				Control.obj.currMachine = new Gerät("KR QUANTEC Extra");
+				//activate buttons for different sensors and current canvas 
+				btnGroup.SetActive(true);
+				machineCanvas.enabled = true;
 				StartCoroutine(showInfo());
 				//show the buttons with all sensors
 				Control.obj.currMachine.showButtons();

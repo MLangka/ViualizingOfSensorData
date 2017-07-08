@@ -2,52 +2,71 @@
 using UnityEngine.UI;
 using System;
 
-public class Gerät{
+public class Gerät : ScriptableObject {
 
-	public String name;
-	public bool active;
 	public Sensor[] machineSensors;
+	//private String description;
+	private String name;
 	private GameObject obj1;
 	private GameObject obj2;
 	private GameObject obj3;
 
 	//get id from picture used and then get data from agent
-	public Gerät(String machineName){
+	public Gerät(String machineName/*, String descr*/){
 		this.name = machineName;
+		//this.description = descr;
 		machineSensors = new Sensor[3];
 		machineSensors[0] = new Sensor("temperatur", 300, 200, this);
 		machineSensors[1] = new Sensor("ultraschall", 400, 100, this);
-		//machineSensors[2] = new Sensor("infrarot", 0, 200, this);
+		machineSensors[2] = new Sensor("infrarot", 0, 200, this);
+		//textOnCanvas();
+	}
+
+	private void textOnCanvas(){
+		GameObject.Find("Gerätname").GetComponent<Text>().text = name;
+		String sens = "";
+		for(int i = 0; i < machineSensors.Length; i++){
+			sens = sens + machineSensors[i].sensorType;
+			if (i != (machineSensors.Length - 1))
+				sens += ", ";
+		}
+		GameObject.Find("Sensoren").GetComponent<Text>().text = sens;
 	}
 
 	public void showButtons(){
 		obj1 = GameObject.Find("Sensor1");
 		obj2 = GameObject.Find("Sensor2");
 		obj3 = GameObject.Find("Sensor3");
+		int amountOfSensors = 0;
 		if(machineSensors[0] != null && obj1 != null){
 			Image img = obj1.GetComponent<Image>();
 			img.sprite = Resources.Load<Sprite>("Sprites/" + machineSensors[0].sensorType);
 			obj1.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors[0]);});
+			amountOfSensors++;
 		}
-		if (machineSensors[1] != null && obj2 != null) {
-			Image img = obj2.GetComponent<Image>();
-			img.sprite = Resources.Load<Sprite>("Sprites/" + machineSensors[1].sensorType);
-			obj2.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors [1]);});
-		}
-		if(machineSensors[2] != null && obj3 != null){
-			Image img = obj3.GetComponent<Image>();
-			img.sprite = Resources.Load<Sprite>("Sprites/" + machineSensors[2].sensorType);
-			obj3.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors[2]);});
-		}
-		GameObject[] sensorbuttons = GameObject.FindGameObjectsWithTag("gerätesensor");
-		if(sensorbuttons.Length > machineSensors.Length){
-			for(int i = sensorbuttons.Length; i > machineSensors.Length; i--){
-				sensorbuttons[i].SetActive(false);
+		if (machineSensors[1] != null) {
+			if(obj2 != null){
+				Image img = obj2.GetComponent<Image>();
+				img.sprite = Resources.Load<Sprite>("Sprites/" + machineSensors[1].sensorType);
+				obj2.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors[1]);});
+				amountOfSensors++;
 			}
+		}else{
+			obj2.SetActive (false);
+		}
+		if(machineSensors[2] != null){
+			if(obj3 != null){
+				Image img = obj3.GetComponent<Image>();
+				img.sprite = Resources.Load<Sprite>("Sprites/" + machineSensors[2].sensorType);
+				obj3.GetComponent<Button>().onClick.AddListener(delegate{openSensorView(machineSensors[2]);});
+				amountOfSensors++;
+			}
+		}else{
+			obj3.SetActive (false);
 		}
 		Text txt = GameObject.Find("SensorText").GetComponent<Text>();
 		if(txt != null){
-			txt.text = machineSensors.Length.ToString ();
+			txt.text = amountOfSensors.ToString();
 		}
 	}
 

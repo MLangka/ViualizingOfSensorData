@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using System.Collections;
 
-public class Sensor{
+public class Sensor : ScriptableObject {
 
 	//timestamp and curValue are the only ones changing
 	//public Image src = GameObject.Find("Icon").GetComponent<Image>();
